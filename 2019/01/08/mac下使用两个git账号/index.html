@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="miaodas&#39;s github.io">
 <meta property="og:description" content="有时候会需要在一台电脑上使用两个git账号，如果不设置的话，会有连不上的情况。这里记录下设置的过程： 1. 生成不同的ssh key pairs为两个git账号分别生成对应的ssh key。 1234cd ~/.sshssh-keygen -t rsa -C &amp;quot;邮箱&amp;quot;//  保存的时候提供不同的命名。 2. 增加ssh 配置文件12345678910111213cd ~/.ss">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-08T08:59:49.608Z">
+<meta property="og:updated_time" content="2019-01-08T09:05:37.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac下使用两个git账号">
 <meta name="twitter:description" content="有时候会需要在一台电脑上使用两个git账号，如果不设置的话，会有连不上的情况。这里记录下设置的过程： 1. 生成不同的ssh key pairs为两个git账号分别生成对应的ssh key。 1234cd ~/.sshssh-keygen -t rsa -C &amp;quot;邮箱&amp;quot;//  保存的时候提供不同的命名。 2. 增加ssh 配置文件12345678910111213cd ~/.ss">
@@ -95,6 +95,8 @@
 <h2 id="3-更新ssh-agent高速缓存"><a href="#3-更新ssh-agent高速缓存" class="headerlink" title="3. 更新ssh-agent高速缓存"></a>3. 更新ssh-agent高速缓存</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 清除ssh-agent缓存</span><br><span class="line">ssh-add -D</span><br><span class="line"># 添加缓存</span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
 <h2 id="4-连接ssh测试是否连上"><a href="#4-连接ssh测试是否连上" class="headerlink" title="4. 连接ssh测试是否连上"></a>4. 连接ssh测试是否连上</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T private</span><br></pre></td></tr></table></figure>
 <h2 id="5-使用"><a href="#5-使用" class="headerlink" title="5. 使用"></a>5. 使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd .git</span><br><span class="line"># 进入.git目录</span><br><span class="line">vim config</span><br><span class="line"># 修改git remote url</span><br><span class="line">git@github.com:miaodas/angel.git =&gt; git@private:miaodas/angel.git</span><br></pre></td></tr></table></figure>
+<p>使用的时候最好把git config中的默认<code>name和email</code>设置为空，然后在每个仓库目录下设置对应的<code>name&amp;&amp;email</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset user.name</span><br><span class="line">git config --global --unset user.email</span><br><span class="line"># unset name &amp;&amp; email</span><br><span class="line">git config user.name &quot;name&quot;</span><br><span class="line">git config user.email &quot;email&quot;</span><br></pre></td></tr></table></figure>
 
       
     </div>
